@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+
+function draw(e){
+  //console.log(e);
+  if(bool){
+    ctx.moveTo(e.clientX,e.clientY);
+    ctx.lineTo(e.clientX,e.clientY);
+    ctx.stroke();
+
+    ctx.strokeStyle = `hsl(${color%360}, 100%, 50%)`;
+    color++;
+
+    ctx.lineWidth++;
+  }
+
+}
+
+let color = 0;
+const canvas = document.getElementById("draw");
+const ctx = canvas.getContext("2d");
+
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+
+ctx.lineJoin = 'round';
+ctx.lineCap= 'round';
+ctx.lineWidth = 10;
+
+let xVar = 0;
+let yVar = 0;
+
+let bool = false;
+
+canvas.addEventListener('mousedown', () => bool = true);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseout', () => bool = false);
+canvas.addEventListener('mouseup', () => bool = false);
+
+
+
+console.log(ctx);
+
+</script>
+
+<style>
+  html, body {
+    margin:0;
+  }
+</style>
+
+</body>
+</html>
